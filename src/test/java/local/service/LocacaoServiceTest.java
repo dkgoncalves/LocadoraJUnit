@@ -92,5 +92,14 @@ public class LocacaoServiceTest {
         assertTrue(DataUtils.isMesmaData(data,DataUtils.obterDataComDiferencaDias(1)));
 
     }
+    
+    @Test
+    public void devePagar75PorCentoNoFilme3() throws LocadoraException{
+        LocacaoService ls = new LocacaoService();
+        
+        Locacao locacao = ls.alugarFilme(cliente, Arrays.asList(filmes.get(0), filmes.get(1), filmes.get(2)));
+        
+        assertThat(locacao.getValor(), is(11.00));
+    }
 
 }
