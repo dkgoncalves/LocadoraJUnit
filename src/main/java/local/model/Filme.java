@@ -1,5 +1,7 @@
 package local.model;
 
+import local.exception.FilmeException;
+
 public class Filme {
 
 
@@ -15,21 +17,29 @@ public class Filme {
         this.estoque = estoque;
         this.precoLocacao = precoLocacao;
     }
-
+    
+    public void setNome(String nome) {
+        if(nome.length() < 1){
+            throw new FilmeException("Nome deve possuir no minimo 2 caracteres");
+        }else if(nome.length() > 98) {
+            throw new FilmeException("Nome deve possuir no máximo 99 caracteres");
+        }
+    }
+    
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setEstoque(Integer estoque) {
+        if(estoque < 0 || estoque > 99){
+            throw new FilmeException("Quantidade do filme não pode ser menor que 0");
+        } else if(estoque > 98) {
+            throw new FilmeException("Quantidade do filme não pode ser maior que 99");
+        }
     }
-
+    
     public Integer getEstoque() {
         return estoque;
-    }
-
-    public void setEstoque(Integer estoque) {
-        this.estoque = estoque;
     }
 
     public Double getPrecoLocacao() {
