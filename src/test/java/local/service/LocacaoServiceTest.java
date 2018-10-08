@@ -95,11 +95,36 @@ public class LocacaoServiceTest {
     
     @Test
     public void devePagar75PorCentoNoFilme3() throws LocadoraException{
+        
         LocacaoService ls = new LocacaoService();
         
         Locacao locacao = ls.alugarFilme(cliente, Arrays.asList(filmes.get(0), filmes.get(1), filmes.get(2)));
         
         assertThat(locacao.getValor(), is(11.00));
     }
-
+    
+    @Test
+    public void devePagar50PorCentoNofilme4() throws LocadoraException{
+        LocacaoService ls = new LocacaoService();
+        
+        Locacao locacao = ls.alugarFilme(cliente, Arrays.asList(filmes.get(0), filmes.get(1), filmes.get(2), filmes.get(3)));
+        
+        assertThat(locacao.getValor(), is(14.00));
+    }
+    
+    @Test
+    public void naoDevePagarPeloFilme5() throws LocadoraException{
+        LocacaoService ls = new LocacaoService();
+        
+        Locacao locacao = ls.alugarFilme(cliente, Arrays.asList(
+                filmes.get(0),
+                filmes.get(1),
+                filmes.get(2),
+                filmes.get(3), 
+                filmes.get(4)
+            )
+        );
+        
+        assertThat(locacao.getValor(), is(16.00));
+    }
 }
