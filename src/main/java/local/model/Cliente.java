@@ -1,9 +1,6 @@
 package local.model;
 
 import local.exception.ClienteException;
-import org.assertj.core.internal.bytebuddy.utility.RandomString;
-
-import javax.validation.constraints.Size;
 
 public class Cliente {
 
@@ -26,7 +23,7 @@ public class Cliente {
 		if(nome==null){
 			throw new ClienteException("Nome não é um campo obrigatório");
 		}
-		if (nome.length()<=4 && nome.length()<55){
+		if (nome.length() <= 3 || nome.length() < 54){
 			throw new ClienteException("O nome do cliente deve possuir entre 4 e 55 caracteres");
 		}
 		if(!nome.matches("[a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃçÇ ]+")){

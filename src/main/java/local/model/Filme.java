@@ -47,6 +47,10 @@ public class Filme {
     }
 
     public void setPrecoLocacao(Double precoLocacao) {
-        this.precoLocacao = precoLocacao;
+        if(precoLocacao.doubleValue() < 1.00){
+            throw new FilmeException("Valor minimo do filme é R$1,00");
+        } else if(precoLocacao.doubleValue() > 9.99) {
+            throw new FilmeException("Valor máximo do filme é R$9,99");
+        }
     }
 }
