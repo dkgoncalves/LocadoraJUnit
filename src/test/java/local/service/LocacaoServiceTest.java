@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -126,5 +127,19 @@ public class LocacaoServiceTest {
         );
         
         assertThat(locacao.getValor(), is(16.00));
+    }
+    
+    @Test
+    public void deveEntregarNaSegundaQuandoAlugarNoSabado() throws LocadoraException{
+        LocacaoService ls = new LocacaoService();
+        Locacao locacao = ls.alugarFilme(
+                cliente,
+                Arrays.asList(
+                        filmes.get(0),
+                        filmes.get(1)
+                )
+            );
+       boolean isSeguda =  DataUtils.verificarDiaSemana(locacao.getDataRetorno(), Calendar.MONDAY);
+       assertEquals(true, isSegunda);
     }
 }
